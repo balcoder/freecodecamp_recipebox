@@ -1,0 +1,27 @@
+/* RGB */
+$color1: rgba(221, 227, 146, 1);
+$color2: rgba(125, 133, 112, 1);
+$color3: rgba(150, 224, 114, 1);
+$color4: rgba(100, 111, 88, 1);
+$color5: rgba(80, 75, 58, 1);
+
+$font-stack:    Roboto, "Times New Roman", Times, serif;
+.jumbotron {
+  background-color: $color2;
+  color: white;
+   font-family: 'Roboto Slab';
+}
+body {
+    background-color: $color4;
+   font-family: $font-stack;
+  color: $color1;
+}
+.btn {
+  margin: 2px;
+}
+#avatar {
+  height: 40px;
+  widht: 40px;
+  margin: 0 5px 0 0;
+  background-color: $color2;
+}
