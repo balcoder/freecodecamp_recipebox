@@ -29,9 +29,9 @@ var config = {
         }
 
       },
-      // write scss styles and compile first with sass-loaders once compiled to
-      // css use the css-loader bring include it in the bundle, then use
-      // style-loader  to include the styles in header 
+      // write scss styles - compile first with sass-loader, once compiled to
+      // css use the css-loader to include it in the bundle, then use
+      // style-loader  to include the styles in header
       {
         test: /\.scss$/,
         include: SRC_DIR,

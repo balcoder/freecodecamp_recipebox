@@ -1,4 +1,4 @@
-### Cmaper Leaderboard Project for Free Code Camp
+### Recipe Box Project for Free Code Camp
 
 Uses Npm and Webpack as build tools
 1. Just clone and cd into parent.
