@@ -1,12 +1,15 @@
 import React from 'react';
+import { render } from "react-dom";
 
 //form for inputting new recipes
-class RecipeForm extends React.Component {
+export class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      ingredients: ''
+      recipe: [
+        {"name": "",
+        "ingredients": []
+        }
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -15,11 +18,11 @@ class RecipeForm extends React.Component {
   }
 
   handleChangeName(event) {
-    this.setState({name: event.target.value});
+    this.setState({recipe[0].name: event.target.value});
   }
   handleChangeIngred(event) {
 
-    this.setState({ingredients: event.target.value.split(",")});
+    this.setState({recipe[0].ingredients: event.target.value.split(",")});
   }
 
   handleSubmit(event) {

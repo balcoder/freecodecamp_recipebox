@@ -1,6 +1,7 @@
 import React from 'react'
+import { render } from "react-dom";
 // component to write ingredients list elements
-class Recipe extends React.Component {
+export class Recipe extends React.Component {
   constructor(props) {
     super(props)
   }

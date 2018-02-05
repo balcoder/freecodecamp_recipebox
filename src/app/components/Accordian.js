@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { render } from "react-dom";
+import {Recipe} from './Recipe'
 // produce a list of recipes in a bootstrap card
-class Accordian extends React.Component {
+export class Accordian extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -9,7 +11,7 @@ class Accordian extends React.Component {
     console.log(this.props.recipes)
     var Cards = this.props.recipes.map((recipe, i) =>{
       return(
-        <div className="card">
+        <div key={recipe.name} className="card">
           <div className="card-header" id={"heading" + i}>
             <h5 className="mb-0">
               <button className="btn btn-link " data-toggle="collapse" data-target={"#collapse"+i } aria-expanded="true" aria-controls={"collapse"+i}>

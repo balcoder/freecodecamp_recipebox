@@ -1,7 +1,7 @@
 import React from 'react';
-
+import { render } from "react-dom";
 // modal to handle the recipe inputs
-class MyModal extends React.Component {
+export class MyModal extends React.Component {
 
   constructor(props){
     super(props);
@@ -32,7 +32,7 @@ class MyModal extends React.Component {
 
   render(){
   return(
-    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
