@@ -36,8 +36,6 @@ class App extends React.Component {
     updateRecipes(newRecipe) {
       let newList = this.state.recipes;
       newList.push(newRecipe);
-      console.log('updateRecipe: line 38 of components/index.js')
-      console.log(newList)
          this.setState({
             recipes: newList
         });
@@ -47,9 +45,9 @@ class App extends React.Component {
     return(
       <div className="container">
         <Header />
-        <Accordian recipes={this.state.recipes}
-                   update={this.updateRecipes.bind(this)}/>
-        <MyModal update={this.updateRecipes}/>
+        <Accordian recipes={this.state.recipes}/>
+        <MyModal update={this.updateRecipes}
+                recipes={this.state.recipes}/>
       </div>
     );
   }

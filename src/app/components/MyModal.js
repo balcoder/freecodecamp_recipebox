@@ -25,9 +25,9 @@ export class MyModal extends React.Component {
 
   handleSubmit(event) {
     let newRecipe = this.state;
-    console.log("Hit submit button and pass newRecipe below to update");
-    console.log(newRecipe);
     this.props.update(newRecipe);
+    event.preventDefault();
+    $('#exampleModal').modal('hide')
   }
 
   render(){
