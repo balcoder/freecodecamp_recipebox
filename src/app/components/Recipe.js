@@ -8,8 +8,7 @@ export class Recipe extends React.Component {
   render() {
     let index = this.props.index;
     let recipe = this.props.recipe;
-    let lists = recipe.ingredients.map((ingredient, i)=>{
-      console.log(ingredient + i);
+    let lists = recipe.ingredients.map((ingredient, i)=>{    
       return(
       <li key={ingredient + i} className="list-group-item">{ingredient}</li>
       );

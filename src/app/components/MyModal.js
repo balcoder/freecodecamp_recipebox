@@ -9,7 +9,7 @@ export class MyModal extends React.Component {
        name: '',
       ingredients: ''
     }
-
+// bind the this contex to the updateRecipes function
   this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeIngred = this.handleChangeIngred.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +25,7 @@ export class MyModal extends React.Component {
 
   handleSubmit(event) {
     let newRecipe = this.state;
-    this.props.update(newRecipe);
+    this.props.add(newRecipe);
     event.preventDefault();
     $('#exampleModal').modal('hide')
   }

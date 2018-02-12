@@ -16,37 +16,51 @@ class App extends React.Component {
     super();
 
     // bind the this contex to the updateRecipes function
-    this.updateRecipes = this.updateRecipes.bind(this);
+    this.addRecipes = this.addRecipes.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
 
     this.state = {
       recipes: [
-        {"name": "Egg Fried Rice",
+        {id: 0,
+          "name": "Egg Fried Rice",
         "ingredients": ["eggs","rice","spring onions","oil"]
         },
-         {"name": "Pasta Pesto",
+         {id: 1,
+           "name": "Pasta Pesto",
         "ingredients": ["spaghetti","basil","pine nuts","olive oil"]
         },
-         {"name": "Kale & Eggs",
+         {id: 2,
+           "name": "Kale & Eggs",
         "ingredients": ["eggs","kale","garlic","oil"]
         }
       ]
     };
   }
   // This method will be sent to MyModal component
-    updateRecipes(newRecipe) {
+    addRecipes(newRecipe) {
       let newList = this.state.recipes;
       newList.push(newRecipe);
          this.setState({
             recipes: newList
         });
     }
+  //This method will be sent to the accordian component
+  deleteRecipe(name) {
+    let index = this.state.recipes.findIndex(x => x.name == name );
+    let newList = this.state.recipes;
+    newList.splice(index,1);
+    console.log(newList);
+    this.setState({ recipes: newList });
+    console.log(index);
+  }
 
   render(){
     return(
       <div className="container">
         <Header />
-        <Accordian recipes={this.state.recipes}/>
-        <MyModal update={this.updateRecipes}
+        <Accordian recipes={this.state.recipes}
+                    deleteRecipe={this.deleteRecipe}/>
+        <MyModal add={this.addRecipes}
                 recipes={this.state.recipes}/>
       </div>
     );

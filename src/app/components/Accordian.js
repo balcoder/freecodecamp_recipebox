@@ -4,11 +4,16 @@ import {Recipe} from './Recipe'
 // produce a list of recipes in a bootstrap card
 export class Accordian extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    // bind the this contex to the updateRecipes function
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    this.props.deleteRecipe(e.target.id);
+    event.preventDefault();
   }
   render() {
-    console.log("cards")
-    console.log(this.props.recipes)
     var Cards = this.props.recipes.map((recipe, i) =>{
       return(
         <div key={recipe.name} className="card">
@@ -26,8 +31,8 @@ export class Accordian extends React.Component {
             />
         </div>
         <div className="card-body">
-      <button id={"delete" + i} className="btn btn-link" >Delete</button>
-      <button id={"edit" + i} className="btn btn-link" >Edit</button>
+      <button id={recipe.name} className="btn btn-link" onClick={this.handleDelete} >Delete</button>
+      <button id={recipe.name} className="btn btn-link" >Edit</button>
   </div>
       </div>
     </div>
