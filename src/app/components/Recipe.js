@@ -9,13 +9,13 @@ export class Recipe extends React.Component {
     let index = this.props.index;
     let recipe = this.props.recipe;
     let lists = recipe.ingredients.map((ingredient, i)=>{
+      console.log(ingredient + i);
       return(
-      <li key={i+ingredient} className="list-group-item">{ingredient}</li>
+      <li key={ingredient + i} className="list-group-item">{ingredient}</li>
       );
     });
     return (
       <ul className="list-group">
-  <li key={this.props.recipe.name} className="list-group-item list-group-item-info">{this.props.recipe.name}</li>
         {lists}
     </ul>
     );
