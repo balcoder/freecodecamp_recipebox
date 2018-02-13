@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import { Header } from "./components/Header";
 import { Accordian } from "./components/Accordian";
 import { MyModal } from "./components/MyModal";
+import { EditModal } from "./components/EditModal";
 
 
 const css = require('./css/styles.scss');
@@ -49,18 +50,21 @@ class App extends React.Component {
     let index = this.state.recipes.findIndex(x => x.name == name );
     let newList = this.state.recipes;
     newList.splice(index,1);
-    console.log(newList);
     this.setState({ recipes: newList });
-    console.log(index);
   }
+
+
 
   render(){
     return(
       <div className="container">
         <Header />
         <Accordian recipes={this.state.recipes}
-                    deleteRecipe={this.deleteRecipe}/>
+                   deleteRecipe={this.deleteRecipe}
+                   editRecipe={this.editRecipe}/>
         <MyModal add={this.addRecipes}
+                recipes={this.state.recipes}/>
+        <EditModal editRecipe={this.editRecipe}
                 recipes={this.state.recipes}/>
       </div>
     );

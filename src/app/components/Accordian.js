@@ -5,14 +5,31 @@ import {Recipe} from './Recipe'
 export class Accordian extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "",
+      ingredients: []
+    }
     // bind the this contex to the updateRecipes function
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleDelete(e) {
     this.props.deleteRecipe(e.target.id);
     event.preventDefault();
   }
+
+  handleEdit(e) {
+    let name = target.id
+    let index = this.props.recipes.findIndex(x => x.name == name );
+    let recipe = this.props.recipes[index];
+    this.setState({
+      name: recipe.name,
+      ingredients: recipe.ingredients
+    })
+
+    }
+
   render() {
     var Cards = this.props.recipes.map((recipe, i) =>{
       return(
@@ -32,7 +49,7 @@ export class Accordian extends React.Component {
         </div>
         <div className="card-body">
       <button id={recipe.name} className="btn btn-link" onClick={this.handleDelete} >Delete</button>
-      <button id={recipe.name} className="btn btn-link" >Edit</button>
+      <button id={recipe.name} className="btn btn-link" onClick={this.handleEdit} >Edit</button>
   </div>
       </div>
     </div>
