@@ -1,14 +1,18 @@
 import React from 'react';
 import { render } from "react-dom";
 import {Recipe} from './Recipe'
+import { EditModal } from './EditModal'
 // produce a list of recipes in a bootstrap card
 export class Accordian extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      ingredients: []
-    }
+      editRecipe: {
+        name: "",
+        ingredients: []
+      }
+  }
+
     // bind the this contex to the updateRecipes function
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -20,14 +24,19 @@ export class Accordian extends React.Component {
   }
 
   handleEdit(e) {
-    let name = target.id
+    let name = e.target.id;
     let index = this.props.recipes.findIndex(x => x.name == name );
-    let recipe = this.props.recipes[index];
+    let recipeToEdit = this.props.recipes[index];
+    console.log(recipeToEdit);
     this.setState({
-      name: recipe.name,
-      ingredients: recipe.ingredients
-    })
-
+      editRecipe:{
+      name: recipeToEdit.name,
+      ingredients: recipeToEdit.ingredients
+      }
+    });
+    let editModal = document.getElementById('editModal');
+    let myModalInstance = new Modal(editModal, options);
+    myModalInstance.show();
     }
 
   render() {
@@ -59,6 +68,10 @@ export class Accordian extends React.Component {
       <div>
         <div id="accordion">
           {Cards}
+        </div>
+        <div>
+        <EditModal recipe = {this.state.editRecipe}
+          />
         </div>
       </div>
     );

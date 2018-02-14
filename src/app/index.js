@@ -1,4 +1,4 @@
-// test branch checkout -b version
+// test branch for lifting up state
 import React from "react";
 import { render } from "react-dom";
 
@@ -34,7 +34,12 @@ class App extends React.Component {
            "name": "Kale & Eggs",
         "ingredients": ["eggs","kale","garlic","oil"]
         }
-      ]
+      ],
+      recipeEdit: {
+        "name": "",
+        "ingredients":""
+
+      }
     };
   }
   // This method will be sent to MyModal component
@@ -52,6 +57,11 @@ class App extends React.Component {
     newList.splice(index,1);
     this.setState({ recipes: newList });
   }
+  //This method will be sent to the accordian component
+  editRecipe(name) {
+    let index = this.state.recipes.findIndex(x => x.name == name );
+    let newRecipe = this.state.recipes[index];
+  }
 
 
 
@@ -65,6 +75,7 @@ class App extends React.Component {
         <MyModal add={this.addRecipes}
                 recipes={this.state.recipes}/>
         <EditModal editRecipe={this.editRecipe}
+                    recipeEdit={this.state.recipeEdit}
                 recipes={this.state.recipes}/>
       </div>
     );
