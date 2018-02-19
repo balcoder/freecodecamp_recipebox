@@ -19,6 +19,7 @@ class App extends React.Component {
     // bind the this contex to the updateRecipes function
     this.addRecipes = this.addRecipes.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.editRecipe = this.editRecipe.bind(this);
 
     this.state = {
       recipes: [
@@ -58,9 +59,15 @@ class App extends React.Component {
     this.setState({ recipes: newList });
   }
   //This method will be sent to the accordian component
-  editRecipe(name) {
-    let index = this.state.recipes.findIndex(x => x.name == name );
-    let newRecipe = this.state.recipes[index];
+  editRecipe(editedRecipe) {
+    console.log("editedRecipe");
+    let index = this.state.recipes.findIndex(x => x.id == editedRecipe.id );
+    console.log(index);
+    let newArray = this.state.recipes;
+    console.log(newArray);
+    newArray.splice(index, 1, editedRecipe);
+    this.setState({recipes: newArray});
+
   }
 
 
@@ -74,9 +81,7 @@ class App extends React.Component {
                    editRecipe={this.editRecipe}/>
         <MyModal add={this.addRecipes}
                 recipes={this.state.recipes}/>
-        <EditModal editRecipe={this.editRecipe}
-                    recipeEdit={this.state.recipeEdit}
-                recipes={this.state.recipes}/>
+
       </div>
     );
   }

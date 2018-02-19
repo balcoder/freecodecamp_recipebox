@@ -7,15 +7,15 @@ export class Accordian extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editRecipe: {
+        id: null,
         name: "",
         ingredients: []
-      }
   }
 
     // bind the this contex to the updateRecipes function
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
   }
 
   handleDelete(e) {
@@ -27,16 +27,50 @@ export class Accordian extends React.Component {
     let name = e.target.id;
     let index = this.props.recipes.findIndex(x => x.name == name );
     let recipeToEdit = this.props.recipes[index];
-    console.log(recipeToEdit);
+
     this.setState({
-      editRecipe:{
+      id:  recipeToEdit.id,
       name: recipeToEdit.name,
       ingredients: recipeToEdit.ingredients
-      }
-    });
-    let editModal = document.getElementById('editModal');
-    let myModalInstance = new Modal(editModal, options);
-    myModalInstance.show();
+      });
+
+
+
+    $('#editRecipe').on('shown.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var recipeName = button.data('name');
+      var ingredients = button.data('ingredients');
+       // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('.modal-title').text('Edit the recipe ' + recipeName);
+      modal.find('#recipeName').val(recipeName);
+      modal.find('#ingredients').val(ingredients);
+
+    })
+     // $('#editRecipe').modal('show')
+
+    }
+
+    // this function will be sent to the EditModal component
+    submitEdit(newRecipe, oldRecipe) {
+      console.log("newRecipe");
+      console.log(newRecipe);
+      // get the id of the recipe to edit
+       //let editedRecipe = {id: oldRecipe.id}
+      // let index = this.props.recipes.findIndex(x => x.id == oldRecipe.id );
+      // console.log(index);
+      // if(newRecipe.name == "" && newRecipe.ingredients.length == 0){
+      //   return; //nothing changed do nothing
+      // } else if (newRecipe.name == "") {
+      //     editedRecipe.ingredients = newRecipe.ingredients;
+      //     editedRecipe.name =oldRecipe.name;
+      // } else {
+      //   editedRecipe.name = newRecipe.name;
+      //   editedRecipe.ingredients = oldRecipe.ingredients;
+      // }
+      this.props.editRecipe(newRecipe);
     }
 
   render() {
@@ -58,7 +92,7 @@ export class Accordian extends React.Component {
         </div>
         <div className="card-body">
       <button id={recipe.name} className="btn btn-link" onClick={this.handleDelete} >Delete</button>
-      <button id={recipe.name} className="btn btn-link" onClick={this.handleEdit} >Edit</button>
+      <button id={recipe.name} data-name={recipe.name} data-ingredients={recipe.ingredients} data-toggle="modal" data-target="#editRecipe" className="btn btn-link" onClick={this.handleEdit} >Edit</button>
   </div>
       </div>
     </div>
@@ -70,7 +104,10 @@ export class Accordian extends React.Component {
           {Cards}
         </div>
         <div>
-        <EditModal recipe = {this.state.editRecipe}
+        <EditModal id={this.state.id}
+                    name = {this.state.name}
+                  ingredients = {this.state.ingredients}
+                  submitEdit = {this.submitEdit}
           />
         </div>
       </div>

@@ -6,8 +6,9 @@ export class EditModal extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-       name: '',
-      ingredients: ''
+      id: props.id,
+       name: props.name,
+      ingredients: props.ingredients
     }
 // bind the this contex to the updateRecipes function
   this.handleChangeName = this.handleChangeName.bind(this);
@@ -16,21 +17,31 @@ export class EditModal extends React.Component {
 }
 
   handleChangeName(event) {
-    this.setState({name: event.target.value});
+    this.setState({name: event.target.value,
+                    id: this.props.id,
+                  ingredients: this.props.ingredients});
   }
 
   handleChangeIngred(event) {
-    this.setState({ingredients: event.target.value.split(",")});
+    this.setState({ingredients: event.target.value.split(","),
+                    id: this.props.id,
+                    name: this.props.name});
   }
 
   handleSubmit(event) {
+    let oldRecipe = {
+      id: this.props.id,
+      name: this.props.name,
+      ingredients: this.props.ingredients
+      };
     let newRecipe = this.state;
-    this.props.editRecipe(newRecipe);
+    this.props.submitEdit(newRecipe, oldRecipe);
     event.preventDefault();
     $('#editRecipe').modal('hide')
   }
 
   render(){
+
   return(
     <div className="modal fade" id="editRecipe" tabIndex="-1" role="dialog" aria-labelledby="editRecipeModalLabel" aria-hidden="true">
   <div className="modal-dialog" role="document">
@@ -46,11 +57,12 @@ export class EditModal extends React.Component {
         <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.props.name} onChange={this.handleChangeName} />
+          <input id="recipeName" className="name" type="text"
+                 onChange={(event) => this.handleChangeName(event)} />
           </label>
         <label>
           Ingredients:<br/>
-          <textarea value={this.props.ingredients} onChange={this.handleChangeIngred} />
+          <textarea id="ingredients" onChange={this.handleChangeIngred} />
         </label>
         <input type="submit" value="Submit" />
       </form>
