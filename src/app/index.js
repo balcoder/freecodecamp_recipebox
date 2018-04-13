@@ -60,11 +60,11 @@ class App extends React.Component {
   }
   //This method will be sent to the accordian component
   editRecipe(editedRecipe) {
-    console.log("editedRecipe");
+    //console.log("editedRecipe");
     let index = this.state.recipes.findIndex(x => x.id == editedRecipe.id );
-    console.log(index);
+    //console.log(index);
     let newArray = this.state.recipes;
-    console.log(newArray);
+    //console.log(newArray);
     newArray.splice(index, 1, editedRecipe);
     this.setState({recipes: newArray});
 

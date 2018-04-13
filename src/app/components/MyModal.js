@@ -56,8 +56,9 @@ export class MyModal extends React.Component {
       </form>
       </div>
       <div className="modal-footer">
+        <span>Add each new ingredient with a comma</span>
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+
       </div>
     </div>
   </div>

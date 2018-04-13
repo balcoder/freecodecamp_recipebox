@@ -27,7 +27,6 @@ export class Accordian extends React.Component {
     let name = e.target.id;
     let index = this.props.recipes.findIndex(x => x.name == name );
     let recipeToEdit = this.props.recipes[index];
-
     this.setState({
       id:  recipeToEdit.id,
       name: recipeToEdit.name,
@@ -55,21 +54,7 @@ export class Accordian extends React.Component {
 
     // this function will be sent to the EditModal component
     submitEdit(newRecipe, oldRecipe) {
-      console.log("newRecipe");
-      console.log(newRecipe);
-      // get the id of the recipe to edit
-       //let editedRecipe = {id: oldRecipe.id}
-      // let index = this.props.recipes.findIndex(x => x.id == oldRecipe.id );
-      // console.log(index);
-      // if(newRecipe.name == "" && newRecipe.ingredients.length == 0){
-      //   return; //nothing changed do nothing
-      // } else if (newRecipe.name == "") {
-      //     editedRecipe.ingredients = newRecipe.ingredients;
-      //     editedRecipe.name =oldRecipe.name;
-      // } else {
-      //   editedRecipe.name = newRecipe.name;
-      //   editedRecipe.ingredients = oldRecipe.ingredients;
-      // }
+      //console.log("newRecipe");      
       this.props.editRecipe(newRecipe);
     }
 
